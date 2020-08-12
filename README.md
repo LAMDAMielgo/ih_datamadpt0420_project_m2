@@ -23,13 +23,8 @@ The first challenge of this project is to build an **exploratory data analysis r
 The notebook is structured as follows:
 
 - Report 1: Data exploration, cleaning and normalization with summary Statistics, including descriptive statistics (max, min, mean, standard deviation, percentiles, correlations, etc.) and data types (integer, float, boolean, string, etc.).
-- Report 2: Multi-variable analysis. 
-- Report 3: Uni variable analysis. Taking into consideration which synthetics metric could be created
-- Summary statistics 
+- Report 2: Multi-variable analysis. Looking more closely at combinations of characteristics and synthetic metrics against price.
 
-- Data visualizations charts in order to capture a large amount of data all at once in a clear and concise manner (Box Plots, Histograms, Bar Plots, Scatter Plots, Correlation Matrix, etc.).
-
-> **IMPORTANT NOTE:** Data cleaning was a personal choice a
 
 ### :paperclip: Toolkit:
 
@@ -40,7 +35,6 @@ The libraries used for the data visualization are the following:
 - [Seaborn](https://seaborn.pydata.org/)
 - [Plotly Express](https://plotly.com/python/plotly-express/)
 - [Numpy v1.18](https://numpy.org/)
--
 
 ---
 ### :chart_with_downwards_trend: **Challenge 2: Tableau Data Dashboard**
@@ -94,3 +88,20 @@ To communicate the main conclusions from the exploratory analysis, the dashboard
 - [Tableau Viz of the Day](https://public.tableau.com/es-es/gallery/?tab=viz-of-the-day&type=viz-of-the-day)
 - [Introducing plotly express](https://medium.com/plotly/introducing-plotly-express-808df010143d)
 - [Pandas for Data Visualization](https://towardsdatascience.com/pandas-put-away-novice-data-analyst-status-part-2-8df616d5ac7c)
+
+---
+### :love_letter: **Contact info**
+linkedin.com/in/lauramielgo for inqueries.
+
+### :hearts: **Thanks**
+Big thanks to TAs, teachers and classmates for the help and support in the development of this project:
+
+@github/potacho
+
+@github/TheGurus
+
+---
+#### :construction: Status
+Version 1.0 [01.058.2020] > Only finished Tableau Dashboard for Project presentation. Ordered reports as a homework for holidays
+
+Version 1.0.[12.08.2020] > Reports closed and Tableau Dashboard improved after class presentation 
