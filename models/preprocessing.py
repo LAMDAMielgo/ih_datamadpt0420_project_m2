@@ -46,7 +46,7 @@ def getting_prepocessor(NUM_FEATS, CAT_FEATS):
 def data_for_hypothesis_testing(df, NUM_FEATS, CAT_FEATS, path, name):
     cat_df = pd.get_dummies(df[CAT_FEATS])
     num_df = df.loc[:, NUM_FEATS]
-    df = pd.concat([cat_df, num_df])
+    df = pd.concat([cat_df, num_df], axis = 1)
     save_df_to_csv(df, path = path, name = name)
     print(f" ·· Saved df for Hypothesis Testing")
 # --------------------------------------------------------------
