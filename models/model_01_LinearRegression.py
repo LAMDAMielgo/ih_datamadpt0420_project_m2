@@ -1,23 +1,24 @@
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import Lasso
 
 import pandas as pd
-pd.options.display.max_columns = 35
-pd.options.display.max_rows = 25
-# -------------------------------------------------------------- GLOBAL VARIABLES
-CLEAN_DATA_PATH = '../data/clean/diamonds_cleaned.csv'
+import numpy as np
+# --------------------------------------------------------------
+CLEAN_DATA_PATH = '../data/clean/diamonds_purged.csv'
+
 TRAIN_DATA_PATH = '../data/train'
+PREDICTION_DATA_PATH = '../data/predict/diamonds_predict.csv'
+
 NUM_FEATS = []
 CAT_FEATS = []
-COLS_TO_DROP = ['color_num', 'clarity_num', 'cut_num', 'carat_range', 'table_range', 'color_range', 'Unnamed: 0']
+FEATS = NUM_FEATS + CAT_FEATS
+TARGET = 'price'
 # --------------------------------------------------------------
-def save_df_to_csv(df, path, name):
-    print(f' ·· Saving df in {path} as {name}')
-    path = './' + f'{path}'
-    return df.to_csv(f'{path}/{name}.csv')
-
 def getting_feats(df):
     """
     Funtion for categorizing df data
@@ -43,27 +44,18 @@ def getting_prepocessor(NUM_FEATS, CAT_FEATS):
                                                    ('cat', categorical_transformer, CAT_FEATS)])
     return preprocessor
 
-def data_for_hypothesis_testing(df, NUM_FEATS, CAT_FEATS, path, name):
-    cat_df = pd.get_dummies(df[CAT_FEATS])
-    num_df = df.loc[:, NUM_FEATS]
-    df = pd.concat([cat_df, num_df], axis = 1)
-    save_df_to_csv(df, path = path, name = name)
-    print(f" ·· Saved df for Hypothesis Testing")
 # --------------------------------------------------------------
+
 diamonds = pd.read_csv(CLEAN_DATA_PATH)
 
-# Adding another col and dropping cols that were olny necessary for Tableau
-diamonds['T/D_ratio'] = diamonds['table'] / diamonds['depth']
-diamonds.drop(columns=COLS_TO_DROP, axis=1, inplace=True)
-
-# Feats Lists and preprocessing
 getting_feats(diamonds)
-data_for_hypothesis_testing(diamonds, NUM_FEATS, CAT_FEATS, path = TRAIN_DATA_PATH, name = 'diamonds_train_ht')
+preprocessor_diamonds = getting_prepocessor(NUM_FEATS, CAT_FEATS)
 
-# Saving
-save_df_to_csv(diamonds, path='../data/clean', name='diamonds_purged')
-print(diamonds.head(3))
+# TRAIN A SIMPLE MODEL
+diamonds_train, diamonds_test = train_test_split(diamonds)
 
+# CHECK MODEL PERFORMANCE ON TEST AND TRAIN DATA
 
+# CHECK MODEL PERFORMANCE USING CROSS VALIDATION
 
-
+# OPTIMIZE MODEL USING GRID SEARCH
