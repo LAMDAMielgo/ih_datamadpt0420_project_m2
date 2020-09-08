@@ -3,12 +3,14 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
+import numpy as np
 import pandas as pd
 pd.options.display.max_columns = 35
 pd.options.display.max_rows = 25
 # -------------------------------------------------------------- GLOBAL VARIABLES
 CLEAN_DATA_PATH = '../data/clean/diamonds_cleaned.csv'
 TRAIN_DATA_PATH = '../data/train'
+PREDICT_DIAMONDS
 NUM_FEATS = []
 CAT_FEATS = []
 COLS_TO_DROP = ['color_num', 'clarity_num', 'cut_num', 'carat_range', 'table_range', 'color_range', 'Unnamed: 0']
@@ -16,7 +18,7 @@ COLS_TO_DROP = ['color_num', 'clarity_num', 'cut_num', 'carat_range', 'table_ran
 def save_df_to_csv(df, path, name):
     print(f' ·· Saving df in {path} as {name}')
     path = './' + f'{path}'
-    return df.to_csv(f'{path}/{name}.csv')
+    return df.to_csv(f'{path}/{name}.csv', index=False)
 
 def getting_feats(df):
     """
@@ -54,6 +56,8 @@ diamonds = pd.read_csv(CLEAN_DATA_PATH)
 
 # Adding another col and dropping cols that were olny necessary for Tableau
 diamonds['T/D_ratio'] = diamonds['table'] / diamonds['depth']
+diamonds['T/D_dif'] = np.absolute(diamonds['T/D_ratio'].mean() - diamonds['T/D_ratio'])
+diamonds['V/W_dif'] = np.absolute(diamonds['V/W_Ratio'].mean() - diamonds['V/W_Ratio'])
 diamonds.drop(columns=COLS_TO_DROP, axis=1, inplace=True)
 
 # Feats Lists and preprocessing
@@ -64,6 +68,6 @@ data_for_hypothesis_testing(diamonds, NUM_FEATS, CAT_FEATS, path = TRAIN_DATA_PA
 save_df_to_csv(diamonds, path='../data/clean', name='diamonds_purged')
 print(diamonds.head(3))
 
-
+#### TERMINAR Y HACER PARA DIAMONDS_PREDICT
 
 
